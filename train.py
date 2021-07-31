@@ -20,7 +20,7 @@ from loss_functions import compute_smooth_loss, compute_photo_and_geometry_loss,
 from logger import TermLogger, AverageMeter
 from tensorboardX import SummaryWriter
 
-
+# create API to bash shell
 parser = argparse.ArgumentParser(description='Structure from Motion Learner training on KITTI and CityScapes Dataset',
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
@@ -69,8 +69,12 @@ torch.autograd.set_detect_anomaly(True)
 
 def main():
     global best_error, n_iter, device
+    # analyze argparse info
+    # use '--xxx' in bash shell
+    # use 'xxx' as des attribute in args
     args = parser.parse_args()
-
+    
+    # create new path to save checkpoints according to present time
     timestamp = datetime.datetime.now().strftime("%m-%d-%H:%M")
     save_path = Path(args.name)
     args.save_path = 'checkpoints'/save_path/timestamp
